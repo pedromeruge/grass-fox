@@ -7,9 +7,9 @@ TagManager:
   - OneWayPlataform
   - root_Player
   - root_Ground
-  - root_Arrow
   - root_Enemy
   - root_TestEnemy
+  - root_TempOffensive
   layers:
   - Default
   - TransparentFX

@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Script Entity (geral)
+//qualquer objeto base da cena tem SEntity
 public class SEntity : MonoBehaviour
 {
-    // Quando se sabe especificamente o tipo de root do objeto
-    //Melhor type checking no futuro, n estou a ver direito agora como?
+
 
     [Obsolete("getTaggedRoot está deprecated, usar GetRoot<T>")]
     public static GameObject getTaggedRoot(GameObject obj, string tag)
@@ -31,7 +32,7 @@ public class SEntity : MonoBehaviour
     //outra solucao seria usar this.transform.root, mas isso só funciona se os componentes estivessem no topo da cena atual, senão quebrava
 
     //obtém objeto base de qualquer tipo T de obj, na cena
-    public static GameObject getObjRoot<T>(GameObject obj)
+    public static T getObjRoot<T>(GameObject obj) where T : class // penso para prevenir erro de T não nullable :X
     {
         if (obj == null)
         {
@@ -39,17 +40,18 @@ public class SEntity : MonoBehaviour
             return null;
         }
 
-        GameObject root = obj;
-
-        while (root != null && root.GetComponent<T>() == null) // custoso este getComponent, outra solucao?
+        GameObject objIt = obj;
+        T res = null;
+        while ( objIt != null && (res = objIt.GetComponent<T>()) == null ) // custoso este getComponent, outra solucao?
         {
-            root = root.transform.parent.gameObject;
+            objIt = objIt.transform.parent.gameObject;
         }
         // if (didn´t find root) do ???
         //Debug.Log("isRoot==SEntity: " + (root.GetComponent<SEntity>() != null));
-        return root;
+        return res;
     }
 
+    [Obsolete("getTaggedRoot está deprecated, usar GetRoot<T>")]
     //obtém script do objeto base de qualquer tipo de obj na cena
     public static SEntity getObjRootScript(GameObject obj)
     {
@@ -79,6 +81,7 @@ public class SEntity : MonoBehaviour
         return script;
     }
 
+    [Obsolete("getTaggedRoot está deprecated, usar GetRoot<T>")]
     // obter objeto especificamente de player
     public static GameObject getPlayerObjWithName(GameObject obj, string name)
     {
@@ -90,6 +93,7 @@ public class SEntity : MonoBehaviour
         return obj.transform.Find(name).gameObject;
     }
 
+    [Obsolete("getTaggedRoot está deprecated, usar GetRoot<T>")]
     //Devolve gameObject com o nome dado, partindo do objeto root dado
     public static GameObject getObjWithName(GameObject obj, string name)
     {

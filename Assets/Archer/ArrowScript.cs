@@ -10,18 +10,18 @@ public class ArrowScript : MonoBehaviour
     [SerializeField] private Animator animator;
     private bool hit = false; // atingiu algum objeto na sua trajetoria
     private bool selected = false; // indica se player tem o foco de pickup nesta seta
-    private GameObject owner; // pointer para o player que criou esta seta, para n o atingir
+    private SpEntity owner; // pointer para o player que criou esta seta, para n o atingir
     void Awake()
     {
-        this.tag = SEntityConsts.TAG_ARROW;
+        this.tag = SEntityConsts.TAG_TEMPOFFENSIVE;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!hit) // se ainda n acertou em nada
         {
-            GameObject objectHit = SEntity.getObjRoot<SEntity>(other.gameObject);
-            if (objectHit.CompareTag(SEntityConsts.TAG_GROUND)) // se atingir terreno
+            SEntity objectHit = SEntity.getObjRoot<SEntity>(other.gameObject);
+            if (objectHit is SgEntity) // se atingir terreno
             {
                 ArrowStick(other);
                 this.hit = true;
@@ -69,10 +69,12 @@ public class ArrowScript : MonoBehaviour
     public void DestroyArrow(float time)
     {
         //animator.SetBool("Destroy", true); // adicionar animações depois??
-        Destroy(SEntity.getTaggedRoot(this.gameObject,SEntityConsts.TAG_ARROW),time);
+        StoEntity root_arrow = SEntity.getObjRoot<StoEntity>(this.gameObject);
+        if (root_arrow == null) Debug.LogError("Root is null");
+        Destroy(root_arrow.gameObject,time);
     }
 
-    public void SetParent(GameObject newOwner)
+    public void SetParent(SpEntity newOwner)
     {
         if (newOwner != null)
         {
@@ -80,7 +82,7 @@ public class ArrowScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("owner inválido aka nulo!");
+            Debug.Log("owner nulo!");
         }
     }
 }

@@ -8,7 +8,7 @@ public class IAttack : MonoBehaviour {
 
     public void UseAbility(int pos) {
         if (pos >= 0 && pos < kitAbilities.getAbilityCount()) {
-            Debug.Log("Used: " + this.kitAbilities.getAbility(pos).getAbilityDesc());
+            // Debug.Log("Used: " + this.kitAbilities.getAbility(pos).getAbilityDesc());
             this.kitAbilities.getAbility(pos).Use();
         }
         else

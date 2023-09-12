@@ -18,7 +18,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
 
 	//separação em diferentes gameObjects requer isto
-	private GameObject ICollisions; // colisões do player
+	private ICollisions collisions; // colisões do player
 	private Rigidbody2D m_Rigidbody2D; // rigidbody deste player
 
 	const float k_GroundedRadius = .1f; // Radius of the overlap circle to determine if grounded
@@ -45,13 +45,13 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
 	{
-		if (this.ICollisions == null) 
+		if (this.collisions == null) 
 		{
-			this.ICollisions = SEntity.getPlayerObjWithName( SEntity.getTaggedRoot(this.gameObject,SEntityConsts.TAG_PLAYER) , "ICollisions");
+			this.collisions = SEntity.getObjRoot<SpEntity>(this.gameObject).GetComponentInChildren<ICollisions>();
 		}
 		if (this.m_Rigidbody2D == null) 
 		{
-			this.m_Rigidbody2D = this.ICollisions.GetComponent<Rigidbody2D>();
+			this.m_Rigidbody2D = this.collisions.GetComponent<Rigidbody2D>();
         }
 
 		if (OnLandEvent == null)
@@ -97,10 +97,10 @@ public class CharacterController2D : MonoBehaviour
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
 		{
-			if (colliders[i].gameObject != ICollisions)
+			if (colliders[i].gameObject != collisions.gameObject)
 			{
 				//Debug.Log("Object : " + colliders[i].gameObject + " i = " + i);
-				// sempre que est� no ch�o:
+				// sempre que está no chão:
 				m_Grounded = true;
 				coyoteTimeCounter = coyoteTime; // reinicia margem de erro para saltar, mesmo depois de cair das bordas
 				if (!wasGrounded) // se n�o estava grounded antes, invoca eventos on land
@@ -224,9 +224,9 @@ public class CharacterController2D : MonoBehaviour
 		m_FacingRight = !m_FacingRight;
 
 		// Multiply the player's x local scale by -1.
-		Vector3 theScale = ICollisions.transform.localScale;
+		Vector3 theScale = collisions.transform.localScale;
 		theScale.x *= -1;
-		ICollisions.transform.localScale = theScale;
+		collisions.transform.localScale = theScale;
 	}
 
 	//saber se player est� virado para a esquerda ou direita

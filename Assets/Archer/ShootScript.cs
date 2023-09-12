@@ -19,19 +19,19 @@ public class ShootScript : MonoBehaviour
     private GameObject currArrow = null; // seta atualmente mais pr�xima do player, poss�vel de ser recolhida
 
     //necessário com a divisão do player em vários gameObjects
-    private Transform m_PlayerPos;
-    private GameObject root_Player;
+    private ICollisions collisions;
+    private SpEntity root_Player;
 
     void Awake() {
-        if (root_Player == null)
+        if (this.root_Player == null)
         {
-            root_Player = SEntity.getTaggedRoot(this.gameObject, SEntityConsts.TAG_PLAYER);
-            if (root_Player == null) return;
+            this.root_Player = SEntity.getObjRoot<SpEntity>(this.gameObject);
+            if (this.root_Player == null) return;
         }
-        if (m_PlayerPos == null)
+        if (this.collisions == null)
         {
-            this.m_PlayerPos = SEntity.getPlayerObjWithName(root_Player, "ICollisions").transform; // sem null checks, lazy
-            if (m_PlayerPos == null) return;
+            this.collisions = root_Player.GetComponentInChildren<ICollisions>(); // sem null checks, lazy
+            if (this.collisions == null) return;
         }
         this.arrowsLeft = maxArrows;
     }
@@ -83,7 +83,7 @@ public class ShootScript : MonoBehaviour
     {
         Collider2D closestArrow = null;
         float closestDistSqr = Mathf.Infinity;
-        Vector3 currPos = this.m_PlayerPos.position;
+        Vector3 currPos = this.collisions.transform.position;
         Collider2D[] arrows = Physics2D.OverlapCircleAll(currPos, k_PickUpArrow_radius, m_WhatIsArrow); // procura todas as arrows (layer 7)
         foreach(var arr in arrows)
         {
@@ -102,14 +102,16 @@ public class ShootScript : MonoBehaviour
     //spawn de seta, com velocidade, sprite e direção ajustada à orientação do jogador
     private IEnumerator spawnArrow()
     {
-        int facingRight = m_PlayerPos.transform.localScale.x > 0 ? 1 : -1; // seta para a esq. ou dir.
+        int facingRight = collisions.transform.localScale.x > 0 ? 1 : -1; // seta para a esq. ou dir.
 
         //Vector3 spawnPos = this.transform.position + new Vector3(this.arrowOffset.x * facingRight, this.arrowOffset.y, this.arrowOffset.z); // lugar de spawn da seta
 
-        GameObject copy = Instantiate(arrow, this.m_PlayerPos.position, Quaternion.identity); //spawn da seta
+        GameObject copy = Instantiate(arrow, collisions.transform.position, Quaternion.identity); //spawn da seta
 
         //desativar  colisões com player, ao criar a seta, para não o empurrar
-        Collider2D[] playerColliders = SEntity.getPlayerObjWithName(root_Player, "ICollisions").GetComponents<Collider2D>();
+        Collider2D[] playerColliders = collisions.GetComponents<Collider2D>();
+
+        // if (playerColliders == null) do ???
         Collider2D[] arrowColliders = copy.GetComponents<Collider2D>();
         SEntity.MakeIgnoreCollisions(playerColliders, arrowColliders,true);
 

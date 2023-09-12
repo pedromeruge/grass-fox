@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
-// classe em TO DO - como é que organizo esta shit ;_;;;
+//Script Player Entity
+// classe de player na cena de gameplay
 public class SpEntity : SEntity
 {
     [SerializeField] IKitInfo playerKitInfo;

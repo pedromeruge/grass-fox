@@ -11,8 +11,8 @@ public class AttackInputHandler : MonoBehaviour
     private void Awake() {
         playerKits = new List<IAttack>();
         //Debug.Log(GameObject.FindGameObjectsWithTag(SEntityConsts.TAG_PLAYER).Length);
-        foreach (GameObject player in (GameObject.FindGameObjectsWithTag(SEntityConsts.TAG_PLAYER))) {
-            IAttack playerKit = SEntity.getPlayerObjWithName(player, "IAttack").GetComponent<IAttack>();
+        foreach (SpEntity player in GameObject.FindObjectsOfType<SpEntity>()) {
+            IAttack playerKit = player.GetComponentInChildren<IAttack>();
             if (playerKit == null)
             {
                 Debug.LogError("IKit is null");

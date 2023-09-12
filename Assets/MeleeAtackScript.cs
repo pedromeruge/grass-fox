@@ -16,7 +16,9 @@ public class MeleeAtackScript : MonoBehaviour
     void Start()
     {
         animator = this.GetComponent<Animator>();
-        this.m_playerPos = SEntity.getPlayerObjWithName(SEntity.getTaggedRoot(this.gameObject, SEntityConsts.TAG_PLAYER), "ICollisions").transform; // sem null checks, lazy
+        SpEntity player = SEntity.getObjRoot<SpEntity>(this.gameObject); // sem null checks, lazy
+        if (player == null) Debug.LogError("player root is null");
+        this.m_playerPos = player.GetComponentInChildren<ICollisions>().transform; 
     }
     
     // Afeta todos os players em contacto com a área de ataque do player (área circular)
@@ -40,20 +42,22 @@ public class MeleeAtackScript : MonoBehaviour
             Vector2 appliedForce = this.k_attackForce;
             appliedForce.x *= this.m_playerPos.localScale.x > 0 ? 1 : -1; // orientar o sentido da força para esq. ou dir.
 
-            SEntity script = SEntity.getObjRootScript(hitObj.gameObject);
-            Debug.Log("Hit" + script.gameObject.name);
+            SEntity entitity = SEntity.getObjRoot<SEntity>(hitObj.gameObject);
+            if (entitity is null) Debug.LogError("entity hit has null root");
+
+            Debug.Log("Hit" + entitity.gameObject.name);
 
             //Aplicar força se for player
-            if (script is SpEntity)
+            if (entitity is SpEntity)
             {
-                SEntity.MakeApplyForces(((SpEntity)script).getPlayerRb(), this.k_attackForce);
+                SEntity.MakeApplyForces(((SpEntity)entitity).getPlayerRb(), this.k_attackForce);
             }
 
             // if (script is script de outros objeto interagíveis) do ...
             // -> evitável se conseguisse garantir que todos os outros tipos de script implementam rigidbody algures - como ?!??!?
-            if (script is StestEntity)
+            if (entitity is StestEntity)
             {
-                SEntity.MakeApplyForces(((StestEntity)script).getPlayerRb(), this.k_attackForce);
+                SEntity.MakeApplyForces(((StestEntity)entitity).getPlayerRb(), this.k_attackForce);
             }
         }
     }

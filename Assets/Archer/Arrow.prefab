@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7048168075776260641}
+  - component: {fileID: 4614086238823724299}
   - component: {fileID: 2093457741846917943}
   - component: {fileID: 2634206542587845332}
   - component: {fileID: 2676621575998453971}
@@ -16,7 +17,7 @@ GameObject:
   - component: {fileID: 3084243853130403737}
   m_Layer: 8
   m_Name: Arrow
-  m_TagString: root_Arrow
+  m_TagString: root_TempOffensive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,6 +37,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -30.056, y: 186.279, z: -49.034}
+--- !u!114 &4614086238823724299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336314269328681827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29601dcd5848a0f4c95fb4af67feee2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &2093457741846917943
 SpriteRenderer:
   m_ObjectHideFlags: 0
