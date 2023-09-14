@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 320286240}
   - component: {fileID: 320286242}
   - component: {fileID: 320286243}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: ICollisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 960
+    m_Bits: 1984
   m_GroundCheck: {fileID: 848250450}
   m_CeilingCheck: {fileID: 1458691929}
   m_CrouchDisableCollider: {fileID: 1081863887}
@@ -8791,7 +8791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 712591644}
   - component: {fileID: 712591645}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: IRender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9105,7 +9105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 883962666}
   - component: {fileID: 883962668}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: IRender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9424,26 +9424,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1055448122}
-  - component: {fileID: 1055448121}
-  m_Layer: 9
+  - component: {fileID: 1055448123}
+  m_Layer: 10
   m_Name: TestStomper
-  m_TagString: root_TestEnemy
+  m_TagString: root_testPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1055448121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055448120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b44f17ca1d6bc4f9abd142c418a7fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1055448122
 Transform:
   m_ObjectHideFlags: 0
@@ -9460,6 +9448,19 @@ Transform:
   - {fileID: 320286240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1055448123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055448120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b44f17ca1d6bc4f9abd142c418a7fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerKitInfo: {fileID: 0}
 --- !u!1 &1081863883
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,9 +9845,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1358449609}
   - component: {fileID: 1358449610}
-  m_Layer: 9
-  m_Name: TestEnemy
-  m_TagString: root_TestEnemy
+  m_Layer: 10
+  m_Name: TestPlayerSquare
+  m_TagString: root_testPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9879,6 +9880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b44f17ca1d6bc4f9abd142c418a7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerKitInfo: {fileID: 0}
 --- !u!1 &1421805927
 GameObject:
   m_ObjectHideFlags: 0
@@ -14491,7 +14493,7 @@ GameObject:
   - component: {fileID: 2145618623}
   - component: {fileID: 2145618625}
   - component: {fileID: 2145618624}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: ICollisions
   m_TagString: Untagged
   m_Icon: {fileID: 0}

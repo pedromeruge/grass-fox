@@ -11,14 +11,14 @@ public class AttackInputHandler : MonoBehaviour
     private void Awake() {
         playerKits = new List<IAttack>();
         //Debug.Log(GameObject.FindGameObjectsWithTag(SEntityConsts.TAG_PLAYER).Length);
-        foreach (SpEntity player in GameObject.FindObjectsOfType<SpEntity>()) {
-            IAttack playerKit = player.GetComponentInChildren<IAttack>();
-            if (playerKit == null)
+        foreach (SpEntity player in GameObject.FindObjectsOfType<SpEntity>()) 
+        {
+            IAttack playerKit = player.GetComponentInChildren<IAttack>(); // procurar kit de ataque nos players da cena
+            if (playerKit != null)
             {
-                Debug.LogError("IKit is null");
-                return;
+                playerKits.Add(playerKit);
             }
-            playerKits.Add(playerKit);
+      
         }
     }
 

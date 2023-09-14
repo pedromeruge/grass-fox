@@ -8,8 +8,8 @@ TagManager:
   - root_Player
   - root_Ground
   - root_Enemy
-  - root_TestEnemy
   - root_TempOffensive
+  - root_testPlayer
   layers:
   - Default
   - TransparentFX

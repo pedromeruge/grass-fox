@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 //Script Player Entity
 // classe de player na cena de gameplay
-public class SpEntity : SEntity
+public class SpEntity : IHittable
 {
     [SerializeField] IKitInfo playerKitInfo;
 
@@ -26,6 +27,12 @@ public class SpEntity : SEntity
         Rigidbody2D rb = this.transform.Find("ICollisions").GetComponent<Rigidbody2D>();
         if (rb == null) Debug.LogError("Rb não encontrado");
         return rb;
+    }
+
+    //Da interface Hittable
+    override public void Hit()
+    {
+       Debug.Log("Hit " + this.ToString());
     }
 
 }

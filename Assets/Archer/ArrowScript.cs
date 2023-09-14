@@ -24,15 +24,18 @@ public class ArrowScript : MonoBehaviour
             if (objectHit is SgEntity) // se atingir terreno
             {
                 ArrowStick(other);
-                this.hit = true;
                 animator.SetBool("Stuck", true);
+                this.hit = true;
                 //Debug.Log("Hit Wall");
             }
-            else if (objectHit.CompareTag(SEntityConsts.TAG_ENEMY) || (objectHit.CompareTag(SEntityConsts.TAG_PLAYER) && objectHit != this.owner)) // NOTA: temporariamente assim para seta não matar proprio player no inicio
-                                                                                                                                                   // usando pool de setas mais tarde deve ser mais fácil evitar usar isto
-                                                                                                                                                   // isto impossiblita refletir setas para matar o próprio player, we want that shit!
+            else if (objectHit is IHittable) // NOTA: temporariamente assim para seta não matar proprio player no inicio (update: tirei e dá igual??) // usando pool de setas mais tarde deve ser mais fácil evitar usar isto
+                                                                                                                                                     // isto impossiblita refletir setas para matar o próprio player, we want that shit!
             {
-                Destroy(objectHit);
+                ((IHittable)objectHit).Hit();
+                DestroyArrow(0f);
+            }
+            else
+            {
                 DestroyArrow(0f);
             }
         }

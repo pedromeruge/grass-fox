@@ -45,19 +45,16 @@ public class MeleeAtackScript : MonoBehaviour
             SEntity entitity = SEntity.getObjRoot<SEntity>(hitObj.gameObject);
             if (entitity is null) Debug.LogError("entity hit has null root");
 
-            Debug.Log("Hit" + entitity.gameObject.name);
+            if (entitity is IHittable)
+            {
+                ((IHittable)entitity).Hit();
+            }
 
             //Aplicar força se for player
             if (entitity is SpEntity)
             {
                 SEntity.MakeApplyForces(((SpEntity)entitity).getPlayerRb(), this.k_attackForce);
-            }
-
-            // if (script is script de outros objeto interagíveis) do ...
-            // -> evitável se conseguisse garantir que todos os outros tipos de script implementam rigidbody algures - como ?!??!?
-            if (entitity is StestEntity)
-            {
-                SEntity.MakeApplyForces(((StestEntity)entitity).getPlayerRb(), this.k_attackForce);
+                ((SpEntity)entitity).Hit();
             }
         }
     }
