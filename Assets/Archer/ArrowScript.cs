@@ -8,6 +8,7 @@ public class ArrowScript : MonoBehaviour
 {
     //[SerializeField] private float depth = 0.3f; //quanto a seta se deve deslocar para dentro do objeto, quando colide (usar?)
     [SerializeField] private Animator animator;
+    public int damage = 0;
     private bool hit = false; // atingiu algum objeto na sua trajetoria
     private bool selected = false; // indica se player tem o foco de pickup nesta seta
     private SpEntity owner; // pointer para o player que criou esta seta, para n o atingir
@@ -28,14 +29,16 @@ public class ArrowScript : MonoBehaviour
                 this.hit = true;
                 //Debug.Log("Hit Wall");
             }
-            else if (objectHit is IHittable) // NOTA: temporariamente assim para seta não matar proprio player no inicio (update: tirei e dá igual??) // usando pool de setas mais tarde deve ser mais fácil evitar usar isto
-                                                                                                                                                     // isto impossiblita refletir setas para matar o próprio player, we want that shit!
+            else if (objectHit is SpEntity) // usando pool de setas mais tarde deve ser mais fï¿½cil evitar usar isto
             {
-                ((IHittable)objectHit).Hit();
+                objectHit.GetComponentInChildren<Stats>().damage(this.damage);
+
+
                 DestroyArrow(0f);
             }
             else
             {
+                Debug.Log("Arrow hit unknown surface");
                 DestroyArrow(0f);
             }
         }
@@ -45,11 +48,11 @@ public class ArrowScript : MonoBehaviour
     private void ArrowStick(Collision2D obj)
     {
         //this.transform.parent = obj.transform; // faz a seta filha do outro objeto, para se mover com ele (no caso de inimigos?)
-        Destroy(this.GetComponent<Rigidbody2D>()); // destruir o rigidbody2D para n poder ser mais afetado por forças
+        Destroy(this.GetComponent<Rigidbody2D>()); // destruir o rigidbody2D para n poder ser mais afetado por forï¿½as
     }
 
-    //indica que está selecionada para ser a seta pegada
-    // ativa uma animação
+    //indica que estï¿½ selecionada para ser a seta pegada
+    // ativa uma animaï¿½ï¿½o
     public void HighlightArrow()
     {
         if (this.hit)
@@ -59,8 +62,8 @@ public class ArrowScript : MonoBehaviour
         }
     }
 
-    //indica que já não está selecionada para ser a seta pegada
-    // desativa a animação
+    //indica que jï¿½ nï¿½o estï¿½ selecionada para ser a seta pegada
+    // desativa a animaï¿½ï¿½o
     public void UnHighlightArrow()
     {
         this.selected = false;
@@ -68,10 +71,10 @@ public class ArrowScript : MonoBehaviour
 
     }
 
-    //destroi a seta, após x segundos
+    //destroi a seta, apï¿½s x segundos
     public void DestroyArrow(float time)
     {
-        //animator.SetBool("Destroy", true); // adicionar animações depois??
+        //animator.SetBool("Destroy", true); // adicionar animaï¿½ï¿½es depois??
         StoEntity root_arrow = SEntity.getObjRoot<StoEntity>(this.gameObject);
         if (root_arrow == null) Debug.LogError("Root is null");
         Destroy(root_arrow.gameObject,time);

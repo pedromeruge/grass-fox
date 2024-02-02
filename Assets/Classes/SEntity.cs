@@ -90,13 +90,6 @@ public class SEntity : MonoBehaviour
         }
     }
 
-    //aplica força a um rb, dado o vetor força
-    public static void MakeApplyForces(Rigidbody2D obj, Vector2 force)
-    {
-        obj.AddForce(force);
-    }
-
-
     //aplica força a lista de rb, dado o vetor força
     public static void MakeApplyForces(Rigidbody2D[] obj, Vector2 force)
     {

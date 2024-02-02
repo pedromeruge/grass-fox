@@ -8,10 +8,11 @@ using UnityEngine.UIElements;
 
 public class ShootScript : MonoBehaviour
 {
-    [SerializeField] private GameObject arrow; // prefab usado para dar spawn de novas setas
+    [SerializeField] private GameObject arrow = null; // prefab usado para dar spawn de novas setas
 
-    [SerializeField] private int maxArrows = 3; // n�mero de setas m�ximo
-    [SerializeField] private float speed = 40f; // velocidade da seta em movimento
+    [SerializeField] private int maxArrows; // n�mero de setas m�ximo
+    [SerializeField] private float arrowSpeed = 40f; // velocidade da seta em movimento
+    [SerializeField] private int damage = 50; // dano da seta
     [SerializeField] const float k_PickUpArrow_radius = 2f; // raio de procurar setas � volta do player
     [SerializeField] private LayerMask m_WhatIsArrow; // layer das setas 
     private Vector3 arrowOffset = new Vector3(0f, -0.4f, 0);
@@ -33,6 +34,7 @@ public class ShootScript : MonoBehaviour
             this.collisions = root_Player.GetComponentInChildren<ICollisions>(); // sem null checks, lazy
             if (this.collisions == null) return;
         }
+        arrow.GetComponent<ArrowScript>().damage = damage;
         this.arrowsLeft = maxArrows;
     }
 
@@ -119,8 +121,8 @@ public class ShootScript : MonoBehaviour
         Rigidbody2D newArrow = copy.GetComponent<Rigidbody2D>();
         copy.GetComponent<ArrowScript>().SetParent(this.root_Player); 
 
-        //atribui velocidade e d~ireção
-        newArrow.velocity = new Vector3(speed * facingRight, 0, 0); // ajusta a velocidade da seta � dire��o
+        //atribui velocidade e direção
+        newArrow.velocity = new Vector3(arrowSpeed * facingRight, 0, 0); // ajusta a velocidade da seta � dire��o
         //n consegui fazer quaternion afetar a rota��o da seta, tive que copiar a do player controller manualmente
         // Multiply the player's x local scale by -1.
         Vector3 theScale = newArrow.transform.localScale;

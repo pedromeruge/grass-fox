@@ -6,7 +6,7 @@ using UnityEngine;
 
 //Script Player Entity
 // classe de player na cena de gameplay
-public class SpEntity : IHittable
+public class SpEntity : SEntity
 {
     [SerializeField] IKitInfo playerKitInfo;
 
@@ -15,24 +15,17 @@ public class SpEntity : IHittable
         this.tag = SEntityConsts.TAG_PLAYER;
     }
 
-    //Dá a posição atual do jogador
-    public Transform getCurrPlayerPos()
+    //Dï¿½ a posiï¿½ï¿½o atual do jogador
+    public Transform getCurrPos()
     {
-        return this.transform.Find("ICollisions").transform;
+        return this.GetComponentInChildren<ICollisions>().transform;
     }
 
 
-    public Rigidbody2D getPlayerRb()
+    public Rigidbody2D getRb()
     {
         Rigidbody2D rb = this.transform.Find("ICollisions").GetComponent<Rigidbody2D>();
-        if (rb == null) Debug.LogError("Rb não encontrado");
+        if (rb == null) Debug.LogError("Rb nÃ£o encontrado");
         return rb;
     }
-
-    //Da interface Hittable
-    override public void Hit()
-    {
-       Debug.Log("Hit " + this.ToString());
-    }
-
 }

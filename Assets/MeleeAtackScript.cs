@@ -6,23 +6,24 @@ using UnityEngine;
 public class MeleeAtackScript : MonoBehaviour
 {
     [SerializeField] [Range (0.1f,1f)] private float k_AttackRadius = .2f;
-    [SerializeField] private Vector2 k_attackForce = Vector2.zero; // força exercida sobre inimigos quando atacados
+    [SerializeField] private Vector2 k_attackForce = Vector2.zero; // forï¿½a exercida sobre inimigos quando atacados
+    [SerializeField] private int damage; // dano da abilidade;
     [SerializeField] private Transform m_AttackPos; // pos. central do ataque
     [SerializeField] private LayerMask m_WhatIsHittable; // layers com que o ataque pode interagir
 
-    Animator animator; // não usado
-    Transform m_playerPos; // saber orientação do player, para aplicar o dano
+    private Animator animator; // nï¿½o usado
+    private Transform m_playerPos; // saber orientaï¿½ï¿½o do player, para aplicar o dano
 
     void Start()
     {
         animator = this.GetComponent<Animator>();
-        SpEntity player = SEntity.getObjRoot<SpEntity>(this.gameObject); // sem null checks, lazy
+        SpEntity player = SEntity.getObjRoot<SpEntity>(this.gameObject);
         if (player == null) Debug.LogError("player root is null");
         this.m_playerPos = player.GetComponentInChildren<ICollisions>().transform; 
     }
     
-    // Afeta todos os players em contacto com a área de ataque do player (área circular)
-    // Dá dano e exerçe forças contrarias
+    // Afeta todos os players em contacto com a ï¿½rea de ataque do player (ï¿½rea circular)
+    // Dï¿½ dano e exerï¿½e forï¿½as contrarias
     public void Attack()
     {
         //melhor usar OverlapBox ??? overlapBox tem formato de output em array??
@@ -36,25 +37,20 @@ public class MeleeAtackScript : MonoBehaviour
         {
           // Dano ao inimigo
 
-          // Empurrar o inimigo (força devia ser exercida no lado do script do objeto ao receber dano??)
+          // Empurrar o inimigo (forï¿½a devia ser exercida no lado do script do objeto ao receber dano??)
 
-            //Cálculo da força
+            //Cï¿½lculo da forï¿½a
             Vector2 appliedForce = this.k_attackForce;
-            appliedForce.x *= this.m_playerPos.localScale.x > 0 ? 1 : -1; // orientar o sentido da força para esq. ou dir.
+            appliedForce.x *= this.m_playerPos.localScale.x > 0 ? 1 : -1; // orientar o sentido da forï¿½a para esq. ou dir.
 
             SEntity entitity = SEntity.getObjRoot<SEntity>(hitObj.gameObject);
             if (entitity is null) Debug.LogError("entity hit has null root");
 
-            if (entitity is IHittable)
+            //Aplicar forÃ§a se for player
+            else if (entitity is SpEntity)
             {
-                ((IHittable)entitity).Hit();
-            }
-
-            //Aplicar força se for player
-            if (entitity is SpEntity)
-            {
-                SEntity.MakeApplyForces(((SpEntity)entitity).getPlayerRb(), this.k_attackForce);
-                ((SpEntity)entitity).Hit();
+                ((SpEntity)entitity).getRb().AddForce(this.k_attackForce);
+                entitity.GetComponentInChildren<Stats>().damage(this.damage);
             }
         }
     }
