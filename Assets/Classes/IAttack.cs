@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//segue composição
+//segue composiï¿½ï¿½o
 public class IAttack : MonoBehaviour {
     protected IKit kitAbilities;
 
     public void UseAbility(int pos) {
         if (pos >= 0 && pos < kitAbilities.getAbilityCount()) {
-            // Debug.Log("Used: " + this.kitAbilities.getAbility(pos).getAbilityDesc());
             this.kitAbilities.getAbility(pos).Use();
         }
         else

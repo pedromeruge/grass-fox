@@ -10,5 +10,6 @@ public class SEntityConsts
     public const string TAG_TESTPLAYER = "root_TestPlayer";
     public const string TAG_GROUND = "root_Ground";
     public const string TAG_TEMPOFFENSIVE = "root_TempOffensive";
+    public const string TAG_ONEWAYPLAT = "OneWayPlataform";
 
 }

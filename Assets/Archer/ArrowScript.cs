@@ -12,9 +12,16 @@ public class ArrowScript : MonoBehaviour
     private bool hit = false; // atingiu algum objeto na sua trajetoria
     private bool selected = false; // indica se player tem o foco de pickup nesta seta
     private SpEntity owner; // pointer para o player que criou esta seta, para n o atingir
-    void Awake()
+
+    private Rigidbody2D rb;
+
+    private void Awake()
     {
         this.tag = SEntityConsts.TAG_TEMPOFFENSIVE;
+    }
+
+    private void Start() {
+        this.rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -27,13 +34,11 @@ public class ArrowScript : MonoBehaviour
                 ArrowStick(other);
                 animator.SetBool("Stuck", true);
                 this.hit = true;
-                //Debug.Log("Hit Wall");
             }
             else if (objectHit is SpEntity) // usando pool de setas mais tarde deve ser mais f�cil evitar usar isto
             {
+                Debug.Log("Hit player!");
                 objectHit.GetComponentInChildren<Stats>().damage(this.damage);
-
-
                 DestroyArrow(0f);
             }
             else
@@ -48,7 +53,7 @@ public class ArrowScript : MonoBehaviour
     private void ArrowStick(Collision2D obj)
     {
         //this.transform.parent = obj.transform; // faz a seta filha do outro objeto, para se mover com ele (no caso de inimigos?)
-        Destroy(this.GetComponent<Rigidbody2D>()); // destruir o rigidbody2D para n poder ser mais afetado por for�as
+        rb.bodyType = RigidbodyType2D.Static;
     }
 
     //indica que est� selecionada para ser a seta pegada

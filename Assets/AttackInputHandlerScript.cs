@@ -33,10 +33,15 @@ public class AttackInputHandler : MonoBehaviour
             //Debug.Log("Ataque 2");
             playerKits[0].UseAbility(1);
         }
-        else if (Input.GetButtonDown("Pickup1")) 
+        else if (Input.GetButtonDown("Attack3")) 
         {
             //Debug.Log("Pickup 1");
             playerKits[0].UseAbility(2);
+        }
+        else if (Input.GetButtonDown("Pickup1")) 
+        {
+            //Debug.Log("Pickup 1");
+            playerKits[0].UseAbility(3);
         }
     }
 }
