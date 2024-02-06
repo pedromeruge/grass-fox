@@ -120,7 +120,7 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
   m_ForceReceiveLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -186,6 +186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3084243853130403737}
+  newForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   damage: 50
 --- !u!95 &3084243853130403737
 Animator:
