@@ -11175,7 +11175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrow: {fileID: 6336314269328681827, guid: 4dfd8efb12086b446b1291801a64dbfc, type: 3}
   maxArrows: 100
-  arrowSpeed: 40
+  arrowSpeed: 30
   damage: 50
   m_WhatIsArrow:
     serializedVersion: 2
@@ -11271,7 +11271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   k_AttackX: 0.2
   k_AttackY: 0.2
-  k_attackForce: {x: 0, y: 0}
   m_AttackPos: {fileID: 230895945}
   m_WhatIsParryable:
     serializedVersion: 2
@@ -14053,7 +14052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objPrefab: {fileID: 6336314269328681827, guid: 4dfd8efb12086b446b1291801a64dbfc, type: 3}
   angleDegrees: 0
-  objSpeed: 40
+  objSpeed: 20
   spawnFreq: 2
   objLifeTime: 10
 --- !u!212 &1892643488
