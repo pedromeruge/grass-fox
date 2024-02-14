@@ -6,15 +6,27 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    private float axisX_movementInput;
-    private bool jumpInput;
-    private bool crouchInput;
+    public float axisX_movementInput;
+    public bool jumpInput;
+    public bool crouchInput;
     public bool crouch = false,
                 jump = false;
     [SerializeField] private float runSpeed = 40f;
     [SerializeField] private Animator animator;
 
     private OneWayPlataformScript s_OnewayPlataformScript;
+
+    public void OnMove(InputAction.CallbackContext ctx) {
+       axisX_movementInput = ctx.ReadValue<Vector2>().x;
+    }
+
+    // TODO: Faz com que player possa segurar a tecla e saltar continuamente. Só devia poder saltar uma vez
+    public void OnJump(InputAction.CallbackContext ctx) {
+        jumpInput = ctx.ReadValueAsButton();
+    }
+    public void OnCrouch(InputAction.CallbackContext ctx) {
+        crouchInput = ctx.ReadValueAsButton();
+    }
 
     void Awake()
     {
@@ -28,14 +40,6 @@ public class PlayerMovement : MonoBehaviour
         this.s_OnewayPlataformScript = this.GetComponent<OneWayPlataformScript>();
         }
     }
-
-    public void OnMove(InputAction.CallbackContext ctx) => axisX_movementInput = ctx.ReadValue<Vector2>().x;
-
-    // TODO: Faz com que player possa segurar a tecla e saltar continuamente. Só devia poder saltar uma vez
-    public void OnJump(InputAction.CallbackContext ctx) {
-            jumpInput = ctx.ReadValueAsButton();
-    }
-    public void OnCrouch(InputAction.CallbackContext ctx) => crouchInput = ctx.ReadValueAsButton();
 
     void Update()
     {

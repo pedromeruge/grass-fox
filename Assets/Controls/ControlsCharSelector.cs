@@ -42,6 +42,15 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
                     ""id"": ""991aa81e-13f9-4d14-8185-0c4c49e9c316"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""34c624c5-44f0-4640-a317-e092999c8af4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
@@ -203,7 +212,7 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""bb5ea358-f58c-4875-b34c-2220fc4328d3"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ready"",
@@ -214,10 +223,32 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""32099c3c-389f-432e-a7eb-a05fe5dff679"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Ready"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""51a5f0e1-f8ef-4c3f-8bb5-7bd0a101c416"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03bba2dd-d8b3-4d5d-8799-f96ecb890491"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -230,6 +261,7 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
         m_CharacterSelector = asset.FindActionMap("CharacterSelector", throwIfNotFound: true);
         m_CharacterSelector_ChangeCharacter = m_CharacterSelector.FindAction("ChangeCharacter", throwIfNotFound: true);
         m_CharacterSelector_Ready = m_CharacterSelector.FindAction("Ready", throwIfNotFound: true);
+        m_CharacterSelector_Start = m_CharacterSelector.FindAction("Start", throwIfNotFound: true);
         m_CharacterSelector_Disconnect = m_CharacterSelector.FindAction("Disconnect", throwIfNotFound: true);
     }
 
@@ -294,6 +326,7 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
     private List<ICharacterSelectorActions> m_CharacterSelectorActionsCallbackInterfaces = new List<ICharacterSelectorActions>();
     private readonly InputAction m_CharacterSelector_ChangeCharacter;
     private readonly InputAction m_CharacterSelector_Ready;
+    private readonly InputAction m_CharacterSelector_Start;
     private readonly InputAction m_CharacterSelector_Disconnect;
     public struct CharacterSelectorActions
     {
@@ -301,6 +334,7 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
         public CharacterSelectorActions(@ControlsCharSelector wrapper) { m_Wrapper = wrapper; }
         public InputAction @ChangeCharacter => m_Wrapper.m_CharacterSelector_ChangeCharacter;
         public InputAction @Ready => m_Wrapper.m_CharacterSelector_Ready;
+        public InputAction @Start => m_Wrapper.m_CharacterSelector_Start;
         public InputAction @Disconnect => m_Wrapper.m_CharacterSelector_Disconnect;
         public InputActionMap Get() { return m_Wrapper.m_CharacterSelector; }
         public void Enable() { Get().Enable(); }
@@ -317,6 +351,9 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
             @Ready.started += instance.OnReady;
             @Ready.performed += instance.OnReady;
             @Ready.canceled += instance.OnReady;
+            @Start.started += instance.OnStart;
+            @Start.performed += instance.OnStart;
+            @Start.canceled += instance.OnStart;
             @Disconnect.started += instance.OnDisconnect;
             @Disconnect.performed += instance.OnDisconnect;
             @Disconnect.canceled += instance.OnDisconnect;
@@ -330,6 +367,9 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
             @Ready.started -= instance.OnReady;
             @Ready.performed -= instance.OnReady;
             @Ready.canceled -= instance.OnReady;
+            @Start.started -= instance.OnStart;
+            @Start.performed -= instance.OnStart;
+            @Start.canceled -= instance.OnStart;
             @Disconnect.started -= instance.OnDisconnect;
             @Disconnect.performed -= instance.OnDisconnect;
             @Disconnect.canceled -= instance.OnDisconnect;
@@ -354,6 +394,7 @@ public partial class @ControlsCharSelector: IInputActionCollection2, IDisposable
     {
         void OnChangeCharacter(InputAction.CallbackContext context);
         void OnReady(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
         void OnDisconnect(InputAction.CallbackContext context);
     }
 }

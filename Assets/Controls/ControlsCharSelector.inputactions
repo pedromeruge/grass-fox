@@ -20,6 +20,15 @@
                     "id": "991aa81e-13f9-4d14-8185-0c4c49e9c316",
                     "expectedControlType": "Button",
                     "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "34c624c5-44f0-4640-a317-e092999c8af4",
+                    "expectedControlType": "Button",
+                    "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
                 },
@@ -181,7 +190,7 @@
                     "name": "",
                     "id": "bb5ea358-f58c-4875-b34c-2220fc4328d3",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Ready",
@@ -192,10 +201,32 @@
                     "name": "",
                     "id": "32099c3c-389f-432e-a7eb-a05fe5dff679",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Ready",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51a5f0e1-f8ef-4c3f-8bb5-7bd0a101c416",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03bba2dd-d8b3-4d5d-8799-f96ecb890491",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

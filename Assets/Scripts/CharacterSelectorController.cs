@@ -12,26 +12,39 @@ public class CharacterSelectorController : MonoBehaviour
     private int PlayerIndex;
     private int currKitId = 0;
     private float axisY_movementInput;
-    private bool readyInput;
+    private bool readyInput = false;
+    private bool startInput = false;
 
     private bool isReady = false;
     
     void Start() {
-        Debug.Log(this.GetInstanceID());
+        // Debug.Log(this.GetInstanceID());
         loadKitForPlayer(currKitId);
         TotalKitNumber = CharacterLayoutManager.Instance.kits.Count;
     }
 
     // go up down on consolse
     public void OnChangeCharacter(InputAction.CallbackContext ctx) {
-        Debug.Log("Called on change character");
-        Debug.Log(this.GetInstanceID());
+        // Debug.Log("Called on change character");
+        // Debug.Log(this.GetInstanceID());
         axisY_movementInput = ctx.ReadValue<Vector2>().y;
     }
 
     public void OnReady(InputAction.CallbackContext ctx) {
-        Debug.Log("Called on ready");
+        // Debug.Log("Called on ready");
+        // switch(ctx.phase) {
+        //     case InputActionPhase.Started:
+        //         readyInput = true;
+        //         break;
+        //     default:
+        //         readyInput = false;
+        //         break;
+        // }
         readyInput = ctx.ReadValueAsButton();
+    }
+
+    public void OnStartGame(InputAction.CallbackContext ctx) {
+        startInput = ctx.ReadValueAsButton();
     }
 
     void Update()
@@ -39,10 +52,12 @@ public class CharacterSelectorController : MonoBehaviour
         // kit selection
         if (!isReady) {
             if (axisY_movementInput > 0) {
-                loadKitForPlayer((++currKitId) % TotalKitNumber);
+                currKitId = (++currKitId) % TotalKitNumber;
+                loadKitForPlayer(currKitId);
             }
             else if (axisY_movementInput < 0) {
-                loadKitForPlayer(Mathf.Abs(--currKitId) % TotalKitNumber);
+                currKitId = Mathf.Abs(--currKitId) % TotalKitNumber;
+                loadKitForPlayer(currKitId);
             }
         }
 
@@ -51,17 +66,15 @@ public class CharacterSelectorController : MonoBehaviour
             isReady = !isReady;
             setReady(isReady);
         }
+
+        if (startInput == true) {
+            PlayerConfigurationManager.Instance.StartGame();
+        }
     }
 
     public void SetPlayerIndex(int index) {
         PlayerIndex = index;
     }
-
-    // void removePlayer(int pos) {
-    //     // currentSelected[pos] = false;
-    //     playerUI.transform.Find("SplashArt").GetComponent<SpriteRenderer>().sprite = null;
-    //     playerUI.transform.Find("InfoText").GetComponent<TMPro.TextMeshProUGUI>().text = "";
-    // }
 
     public void loadKitForPlayer(int kitID) {
         PlayerConfigurationManager.Instance.changeKitPlayer(PlayerIndex,kitID);
@@ -73,6 +86,5 @@ public class CharacterSelectorController : MonoBehaviour
     public void setReady(bool setState) {
         PlayerConfigurationManager.Instance.ReadyPlayer(PlayerIndex);
         readyCheck.SetActive(setState);
-        // meter ready no UI
     }
 }

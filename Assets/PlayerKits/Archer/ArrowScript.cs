@@ -71,7 +71,7 @@ public class ArrowScript : MonoBehaviour
         if (this.hit)
         {
             this.selected = true;
-            animator.SetBool("Selected", true);
+            animator.SetBool("Selected", selected);
         }
     }
 
@@ -80,7 +80,7 @@ public class ArrowScript : MonoBehaviour
     public void UnHighlightArrow()
     {
         this.selected = false;
-        animator.SetBool("Selected", false);
+        animator.SetBool("Selected", selected);
 
     }
 

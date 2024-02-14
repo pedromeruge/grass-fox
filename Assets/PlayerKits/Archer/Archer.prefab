@@ -138,6 +138,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 8808965740164534287}
+  axisX_movementInput: 0
+  jumpInput: 0
+  crouchInput: 0
   crouch: 0
   jump: 0
   runSpeed: 40
@@ -685,10 +688,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c46fd722-cbf7-4169-9594-3dad3a29f956
     m_ActionName: Gameplay Keyboard/Crouch[/Keyboard/downArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 168954a0-c189-4621-8b50-61adb99958ad
-    m_ActionName: Gameplay Controller/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay Keyboard
@@ -706,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512dab9f5fc904064a2963f0e8660b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: {fileID: 2503258273773315204}
 --- !u!1 &5674588654754550574
 GameObject:
   m_ObjectHideFlags: 0
