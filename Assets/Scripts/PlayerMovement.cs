@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     //usado ao aterrar no chao no characterController, para identificar a chegada ao ch�o para as anima��es
     public void OnLanding()
     {

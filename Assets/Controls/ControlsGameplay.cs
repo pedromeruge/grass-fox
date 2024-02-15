@@ -255,7 +255,7 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""PlayerMovement"",
+            ""name"": ""PlayerMoveAttack"",
             ""id"": ""eb0c9a28-5184-4f7d-92ba-037f7fc66fe1"",
             ""actions"": [
                 {
@@ -283,6 +283,42 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack1"",
+                    ""type"": ""Button"",
+                    ""id"": ""948edc46-5f87-4556-b34b-ab8c55c125da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack2"",
+                    ""type"": ""Button"",
+                    ""id"": ""687ce75d-24ca-47b9-b253-1c7dbf006427"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack3"",
+                    ""type"": ""Button"",
+                    ""id"": ""7cd32a5b-dba6-46c4-81d0-a28678d9b62e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack4"",
+                    ""type"": ""Button"",
+                    ""id"": ""297de245-1ca1-4d12-a5ce-97655b6fe00b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -396,6 +432,94 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e0eb0a82-cd43-40b0-b4bb-3a27b6bd5dde"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b27289c-f2ee-46bc-b1d7-999fefced578"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1fc6579-126a-4619-b8ba-d4190be6d4a8"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""866c73c4-0510-4094-a67f-8b962ea9b0df"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff3a6bd4-07b4-458c-8865-1c8af507d300"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""056455a4-b36d-4e48-9c07-59d5a8c07df4"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1adb72b9-4876-4ddc-a53f-207a8c30b794"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""908b0809-c83e-4d37-91de-7b39e8535d0f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -408,11 +532,15 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
         m_CharacterSelector_Ready = m_CharacterSelector.FindAction("Ready", throwIfNotFound: true);
         m_CharacterSelector_Start = m_CharacterSelector.FindAction("Start", throwIfNotFound: true);
         m_CharacterSelector_Disconnect = m_CharacterSelector.FindAction("Disconnect", throwIfNotFound: true);
-        // PlayerMovement
-        m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
-        m_PlayerMovement_Move = m_PlayerMovement.FindAction("Move", throwIfNotFound: true);
-        m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerMovement_Crouch = m_PlayerMovement.FindAction("Crouch", throwIfNotFound: true);
+        // PlayerMoveAttack
+        m_PlayerMoveAttack = asset.FindActionMap("PlayerMoveAttack", throwIfNotFound: true);
+        m_PlayerMoveAttack_Move = m_PlayerMoveAttack.FindAction("Move", throwIfNotFound: true);
+        m_PlayerMoveAttack_Jump = m_PlayerMoveAttack.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerMoveAttack_Crouch = m_PlayerMoveAttack.FindAction("Crouch", throwIfNotFound: true);
+        m_PlayerMoveAttack_Attack1 = m_PlayerMoveAttack.FindAction("Attack1", throwIfNotFound: true);
+        m_PlayerMoveAttack_Attack2 = m_PlayerMoveAttack.FindAction("Attack2", throwIfNotFound: true);
+        m_PlayerMoveAttack_Attack3 = m_PlayerMoveAttack.FindAction("Attack3", throwIfNotFound: true);
+        m_PlayerMoveAttack_Attack4 = m_PlayerMoveAttack.FindAction("Attack4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -541,28 +669,36 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
     }
     public CharacterSelectorActions @CharacterSelector => new CharacterSelectorActions(this);
 
-    // PlayerMovement
-    private readonly InputActionMap m_PlayerMovement;
-    private List<IPlayerMovementActions> m_PlayerMovementActionsCallbackInterfaces = new List<IPlayerMovementActions>();
-    private readonly InputAction m_PlayerMovement_Move;
-    private readonly InputAction m_PlayerMovement_Jump;
-    private readonly InputAction m_PlayerMovement_Crouch;
-    public struct PlayerMovementActions
+    // PlayerMoveAttack
+    private readonly InputActionMap m_PlayerMoveAttack;
+    private List<IPlayerMoveAttackActions> m_PlayerMoveAttackActionsCallbackInterfaces = new List<IPlayerMoveAttackActions>();
+    private readonly InputAction m_PlayerMoveAttack_Move;
+    private readonly InputAction m_PlayerMoveAttack_Jump;
+    private readonly InputAction m_PlayerMoveAttack_Crouch;
+    private readonly InputAction m_PlayerMoveAttack_Attack1;
+    private readonly InputAction m_PlayerMoveAttack_Attack2;
+    private readonly InputAction m_PlayerMoveAttack_Attack3;
+    private readonly InputAction m_PlayerMoveAttack_Attack4;
+    public struct PlayerMoveAttackActions
     {
         private @ControlsGameplay m_Wrapper;
-        public PlayerMovementActions(@ControlsGameplay wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_PlayerMovement_Move;
-        public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
-        public InputAction @Crouch => m_Wrapper.m_PlayerMovement_Crouch;
-        public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
+        public PlayerMoveAttackActions(@ControlsGameplay wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PlayerMoveAttack_Move;
+        public InputAction @Jump => m_Wrapper.m_PlayerMoveAttack_Jump;
+        public InputAction @Crouch => m_Wrapper.m_PlayerMoveAttack_Crouch;
+        public InputAction @Attack1 => m_Wrapper.m_PlayerMoveAttack_Attack1;
+        public InputAction @Attack2 => m_Wrapper.m_PlayerMoveAttack_Attack2;
+        public InputAction @Attack3 => m_Wrapper.m_PlayerMoveAttack_Attack3;
+        public InputAction @Attack4 => m_Wrapper.m_PlayerMoveAttack_Attack4;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerMoveAttack; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerMovementActions set) { return set.Get(); }
-        public void AddCallbacks(IPlayerMovementActions instance)
+        public static implicit operator InputActionMap(PlayerMoveAttackActions set) { return set.Get(); }
+        public void AddCallbacks(IPlayerMoveAttackActions instance)
         {
-            if (instance == null || m_Wrapper.m_PlayerMovementActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_PlayerMovementActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlayerMoveAttackActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlayerMoveAttackActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -572,9 +708,21 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Attack1.started += instance.OnAttack1;
+            @Attack1.performed += instance.OnAttack1;
+            @Attack1.canceled += instance.OnAttack1;
+            @Attack2.started += instance.OnAttack2;
+            @Attack2.performed += instance.OnAttack2;
+            @Attack2.canceled += instance.OnAttack2;
+            @Attack3.started += instance.OnAttack3;
+            @Attack3.performed += instance.OnAttack3;
+            @Attack3.canceled += instance.OnAttack3;
+            @Attack4.started += instance.OnAttack4;
+            @Attack4.performed += instance.OnAttack4;
+            @Attack4.canceled += instance.OnAttack4;
         }
 
-        private void UnregisterCallbacks(IPlayerMovementActions instance)
+        private void UnregisterCallbacks(IPlayerMoveAttackActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
@@ -585,23 +733,35 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Attack1.started -= instance.OnAttack1;
+            @Attack1.performed -= instance.OnAttack1;
+            @Attack1.canceled -= instance.OnAttack1;
+            @Attack2.started -= instance.OnAttack2;
+            @Attack2.performed -= instance.OnAttack2;
+            @Attack2.canceled -= instance.OnAttack2;
+            @Attack3.started -= instance.OnAttack3;
+            @Attack3.performed -= instance.OnAttack3;
+            @Attack3.canceled -= instance.OnAttack3;
+            @Attack4.started -= instance.OnAttack4;
+            @Attack4.performed -= instance.OnAttack4;
+            @Attack4.canceled -= instance.OnAttack4;
         }
 
-        public void RemoveCallbacks(IPlayerMovementActions instance)
+        public void RemoveCallbacks(IPlayerMoveAttackActions instance)
         {
-            if (m_Wrapper.m_PlayerMovementActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlayerMoveAttackActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IPlayerMovementActions instance)
+        public void SetCallbacks(IPlayerMoveAttackActions instance)
         {
-            foreach (var item in m_Wrapper.m_PlayerMovementActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlayerMoveAttackActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_PlayerMovementActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlayerMoveAttackActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+    public PlayerMoveAttackActions @PlayerMoveAttack => new PlayerMoveAttackActions(this);
     public interface ICharacterSelectorActions
     {
         void OnChangeCharacter(InputAction.CallbackContext context);
@@ -609,10 +769,14 @@ public partial class @ControlsGameplay: IInputActionCollection2, IDisposable
         void OnStart(InputAction.CallbackContext context);
         void OnDisconnect(InputAction.CallbackContext context);
     }
-    public interface IPlayerMovementActions
+    public interface IPlayerMoveAttackActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);
+        void OnAttack1(InputAction.CallbackContext context);
+        void OnAttack2(InputAction.CallbackContext context);
+        void OnAttack3(InputAction.CallbackContext context);
+        void OnAttack4(InputAction.CallbackContext context);
     }
 }

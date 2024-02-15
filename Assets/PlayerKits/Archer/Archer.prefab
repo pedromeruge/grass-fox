@@ -357,13 +357,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - abilityDesc: Parry
+  - abilityDesc: PickupArrow
     abilityFunc:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 5726714569542930910}
-          m_TargetAssemblyTypeName: ParryScript, Assembly-CSharp
-          m_MethodName: Parry
+        - m_Target: {fileID: 6298063808047522572}
+          m_TargetAssemblyTypeName: ShootScript, Assembly-CSharp
+          m_MethodName: PickUpArrow
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -373,13 +373,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - abilityDesc: PickupArrow
+  - abilityDesc: Parry
     abilityFunc:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6298063808047522572}
-          m_TargetAssemblyTypeName: ShootScript, Assembly-CSharp
-          m_MethodName: PickUpArrow
+        - m_Target: {fileID: 5726714569542930910}
+          m_TargetAssemblyTypeName: ParryScript, Assembly-CSharp
+          m_MethodName: Parry
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 6336314269328681827, guid: 4dfd8efb12086b446b1291801a64dbfc, type: 3}
-  maxArrows: 100
+  maxArrows: 10000
   arrowSpeed: 30
   damage: 50
   m_WhatIsArrow:
@@ -626,8 +626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 512dab9f5fc904064a2963f0e8660b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  input: {fileID: 0}
-  movScript: {fileID: 3844259890885253108}
 --- !u!1 &5674588654754550574
 GameObject:
   m_ObjectHideFlags: 0

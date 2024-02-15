@@ -23,25 +23,6 @@ public class AttackInputHandler : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetButtonDown("Attack1")) 
-        {
-            //Debug.Log("Ataque 1");
-            playerKits[0].UseAbility(0);
-        }
-        else if (Input.GetButtonDown("Attack2")) 
-        {
-            //Debug.Log("Ataque 2");
-            playerKits[0].UseAbility(1);
-        }
-        else if (Input.GetButtonDown("Attack3")) 
-        {
-            //Debug.Log("Pickup 1");
-            playerKits[0].UseAbility(2);
-        }
-        else if (Input.GetButtonDown("Pickup1")) 
-        {
-            //Debug.Log("Pickup 1");
-            playerKits[0].UseAbility(3);
-        }
+
     }
 }

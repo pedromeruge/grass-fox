@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//segue composi��o
 public class IAttack : MonoBehaviour {
     protected IKit kitAbilities;
 

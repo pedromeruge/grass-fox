@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-//segue agregação (senão não dava)
+//segue agregaï¿½ï¿½o (senï¿½o nï¿½o dava)
 public class IKit
 {
     protected List<IAbility> kitAbilities;
@@ -31,7 +31,7 @@ public class IKit
 
     public int getAbilityCount()
     {
-        return this.kitAbilities.Capacity;
+        return this.kitAbilities.Count;
     }
 
     public IAbility getAbility(int index)
