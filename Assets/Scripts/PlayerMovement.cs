@@ -16,18 +16,6 @@ public class PlayerMovement : MonoBehaviour
 
     private OneWayPlataformScript s_OnewayPlataformScript;
 
-    public void OnMove(InputAction.CallbackContext ctx) {
-       axisX_movementInput = ctx.ReadValue<Vector2>().x;
-    }
-
-    // TODO: Faz com que player possa segurar a tecla e saltar continuamente. Só devia poder saltar uma vez
-    public void OnJump(InputAction.CallbackContext ctx) {
-        jumpInput = ctx.ReadValueAsButton();
-    }
-    public void OnCrouch(InputAction.CallbackContext ctx) {
-        crouchInput = ctx.ReadValueAsButton();
-    }
-
     void Awake()
     {
         if (controller == null) 

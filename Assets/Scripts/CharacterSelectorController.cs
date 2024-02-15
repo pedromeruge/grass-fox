@@ -31,15 +31,6 @@ public class CharacterSelectorController : MonoBehaviour
     }
 
     public void OnReady(InputAction.CallbackContext ctx) {
-        // Debug.Log("Called on ready");
-        // switch(ctx.phase) {
-        //     case InputActionPhase.Started:
-        //         readyInput = true;
-        //         break;
-        //     default:
-        //         readyInput = false;
-        //         break;
-        // }
         readyInput = ctx.ReadValueAsButton();
     }
 

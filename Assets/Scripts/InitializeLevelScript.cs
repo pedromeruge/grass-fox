@@ -14,7 +14,7 @@ public class InitializeLevelScript : MonoBehaviour
         for (int i=0;i<playerConfigs.Length; i++) {
             var player = Instantiate(playerPrefab,players); // spawnar em spawn points pré-definidos talvez
             // var player = Instantiate(playerPrefab, playerSpawns[i].position, playerSpawns[i].rotation,gameObject.transform);
-            player.GetComponent<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);
+            player.GetComponentInChildren<PlayerInputHandler>().InitializePlayer(playerConfigs[i]);
         }
     }
 
