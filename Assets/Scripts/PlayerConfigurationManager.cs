@@ -32,7 +32,7 @@ public class PlayerConfigurationManager : MonoBehaviour
     }
 
     public void StartGame() {
-        if (playerConfigs.Count == MinPlayers && playerConfigs.All( p => p.isReady == true)) {
+        if (playerConfigs.Count >= MinPlayers && playerConfigs.All( p => p.isReady == true)) {
             Debug.Log("Starting game");
             SceneManager.LoadScene("GameplayScene");
         }
@@ -42,7 +42,6 @@ public class PlayerConfigurationManager : MonoBehaviour
     public void HandlePlayerJoin(PlayerInput pi) {
         if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex)) {
             pi.transform.SetParent(transform);
-            Debug.Log("called handleplayerjoin");
             playerConfigs.Add(new PlayerConfiguration(pi));
 
         }

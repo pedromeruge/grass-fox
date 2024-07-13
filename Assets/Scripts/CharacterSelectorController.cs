@@ -31,6 +31,13 @@ public class CharacterSelectorController : MonoBehaviour
     }
 
     public void OnReady(InputAction.CallbackContext ctx) {
+        // if (ctx.started == true) { 
+        //     readyInput = true;
+        // }
+        // else if (ctx.canceled == false) {
+        //     readyInput = false;
+        // }
+
         readyInput = ctx.ReadValueAsButton();
     }
 

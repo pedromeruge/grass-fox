@@ -14,6 +14,7 @@ public class PlayerInputHandler : MonoBehaviour
     void Awake()
     {
         controls = new ControlsGameplay();
+        controls.PlayerMoveAttack.Enable();
         SpEntity player = SEntity.getObjRoot<SpEntity>(this.gameObject);
         movScript = player.GetComponentInChildren<PlayerMovement>();
         playerKit = player.GetComponentInChildren<IAttack>();
@@ -28,7 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     private void OnDisable() { // evitar leaks?
-        controls.Disable();
+        controls.PlayerMoveAttack.Disable();
         playerConfig.Input.onActionTriggered -= Input_onActionTriggered;
     }
 

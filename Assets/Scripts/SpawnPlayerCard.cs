@@ -22,13 +22,21 @@ public class SpawnPlayerCard : MonoBehaviour
    }
 
    private void OnEnable() {
-        controls.Enable();
+        controls.CharacterSelector.Enable();
+        // var actions = controls.CharacterSelector;
+        // actions.ChangeCharacter.started += OnChangeCharacter;
+        // actions.Ready.performed += OnReady;
+        // actions.Start.started += OnStartGame;
         input.onActionTriggered += Input_onActionTriggered;
    }
 
    private void OnDisable()
    {
-       controls.CharacterSelector.Disable();
+        controls.CharacterSelector.Disable();
+        // var actions = controls.CharacterSelector;
+        // actions.ChangeCharacter.started -= OnChangeCharacter;
+        // actions.Ready.performed -= OnReady;
+        // actions.Start.started -= OnStartGame;
        input.onActionTriggered -= Input_onActionTriggered;
    }
 
@@ -39,7 +47,7 @@ public class SpawnPlayerCard : MonoBehaviour
             OnReady(ctx);
         } else if (ctx.action.name == controls.CharacterSelector.Start.name) {
             OnStartGame(ctx);
-        } else if (ctx.action.name == controls.CharacterSelector.Start.name) {
+        } else if (ctx.action.name == controls.CharacterSelector.Disconnect.name) {
             OnDisconnect(ctx);
         }
     }
@@ -48,15 +56,16 @@ public class SpawnPlayerCard : MonoBehaviour
    // Acho que se quisesse fazer por c# script diretamente no CharacterSelectorController, o script no prefab tinha de ter acesso a este PlayerInput, how the fuck do that?
    // Repete-se aqui o método e toca a andar i guess
    public void OnChangeCharacter(InputAction.CallbackContext ctx) {
-    prefabScript.OnChangeCharacter(ctx);
+        prefabScript.OnChangeCharacter(ctx);
    }
 
    public void OnReady(InputAction.CallbackContext ctx) {
-    prefabScript.OnReady(ctx);
+        Debug.Log(ctx.phase);
+        prefabScript.OnReady(ctx);
    }
 
    public void OnStartGame(InputAction.CallbackContext ctx) {
-    prefabScript.OnStartGame(ctx);
+        prefabScript.OnStartGame(ctx);
    }
 
    public void OnDisconnect(InputAction.CallbackContext ctx) {
